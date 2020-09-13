@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        docker { run --name test -it baseapim/toolkit }
+        // This step should not normally be used in your script. Consult the inline help for details.
+withDockerContainer(args: '--name test -it', image: 'guruathani/myrepo') {
+    sh 'apic --version'
+}
     }
     stages {
         stage('Test') {
