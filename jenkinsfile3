@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'baseapim/toolkit' }
+        docker { image 'guruathani/myrepo' }
     }
     stages {
         stage('Test1') {
