@@ -1,0 +1,12 @@
+pipeline {
+    agent {
+        docker { image 'baseapim/toolkit' }
+    }
+    stages {
+        stage('Test1') {
+            steps {
+                sh 'apic --version'
+            }
+        }
+    }
+}
