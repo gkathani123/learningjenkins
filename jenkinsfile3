@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { image 'guruathani/myrepo' 
-		withDockerContainer(args: '--name test -it', image: 'guruathani/myrepo') {
+		withDockerContainer(args: '-it', image: 'guruathani/myrepo') {
     sh 'apic --version'
 }
 		}
