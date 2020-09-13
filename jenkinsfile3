@@ -1,9 +1,9 @@
 pipeline {
     agent {
-        docker { image 'guruathani/myrepo' }
+        docker { run --name test -it baseapim/toolkit }
     }
     stages {
-        stage('Test1') {
+        stage('Test') {
             steps {
                 sh 'apic --version'
             }
