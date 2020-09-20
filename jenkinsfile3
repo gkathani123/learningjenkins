@@ -1,16 +1,32 @@
-pipeline {
-    agent {
-        docker { image 'guruathani/myrepo' 
-		withDockerContainer(args: '-it', image: 'guruathani/myrepo') {
-    sh 'apic --version'
-}
-		}
-    }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'apic --version'
+
+// Define Varaibles
+def label = "${BUILD_ID}"
+
+// Setting Email and Slack Notifications
+						]
+//def b = new org.cicd.Build(this, config)
+defaultTemplate
+    {
+        podTemplate( label: label, inheritFrom: 'jenkins-slave',
+                containers: [containerTemplate( name: 'apim-build', image: "guruathani/myrepo:latest"),]
+        )
+        {
+			node(label) {
+
+
+                // Stage: Build
+				build(
+                    body:{
+                        container('apim-build'){
+                    
+                            {
+                                sh """
+								yes | apic --version
+								"""
+                            }
+                        }
+                    }
+                )
             }
         }
     }
-}
